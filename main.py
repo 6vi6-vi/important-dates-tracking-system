@@ -1,16 +1,34 @@
-# This is a sample Python script.
+from datetime import date
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Создать событие
+def create_event(title, event_date):
+    return (
+        f"Событие создано: «{title}»\n"
+        f"Дата: {event_date}\n"
+    )
+
+# Расчёт количества дней до события
+def days_until(event_date, today):
+    gap = event_date - today
+    return gap.days
+
+# Напоминание
+def get_reminder(title, days_left):
+    if days_left < 0:
+        return f"Событие «{title}» прошло ({abs(days_left)} дн. назад)."
+    if days_left == 0:
+        return f"Сегодня — «{title}»!"
+    return f"До события «{title}» осталось {days_left} дн."
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+today = date.today()
+print(f"Сегодня: {today}\n")
 
+title = "День рождения друга"
+event_date = date(2026, 10, 5)
+print(create_event(title, event_date))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+days_left = days_until(event_date, today)
+print(f"До события осталось: {days_left} дн.")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(get_reminder(title, days_left))
